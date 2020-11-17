@@ -12,12 +12,12 @@ script:
   - docker-compose exec --env 'RAILS_ENV=test' web rails test
 
 deploy:
-  - skip_cleanup: true
-  - skip_existing: true
-  - provider: script
-  - script:
-      docker build -t registry.heroku.com/$HEROKU_APP_NAME/web -f Dockerfile.prod .;
-      docker push registry.heroku.com/$HEROKU_APP_NAME/web;
-      heroku run --app $HEROKU_APP_NAME rails db:migrate;
-    on:
-      branch: master 
+  skip_cleanup: true
+  skip_existing: true
+  provider: script
+  script:
+    docker build -t registry.heroku.com/$HEROKU_APP_NAME/web -f Dockerfile.prod .;
+    docker push registry.heroku.com/$HEROKU_APP_NAME/web;
+    heroku run --app $HEROKU_APP_NAME rails db:migrate;
+  on:
+    branch: master 
