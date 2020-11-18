@@ -7,6 +7,6 @@ RUN apt-get update && apt-get install -y \
     yarn
 WORKDIR /product-register
 COPY Gemfile Gemfile.lock /product-register/
-RUN bundle install && bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java
+RUN bundle install
 COPY . .
 CMD ["rails","s"]
